@@ -1,0 +1,26 @@
+{
+	"name": "socket_playwright",
+	"private": true,
+	"version": "0.0.0",
+	"workspaces": [
+		"app-a",
+		"app-b"
+	],
+	"type": "module",
+	"scripts": {
+		"start:server": "node server/index.js",
+		"start:app-a": "npm --prefix app-a run dev -- --port 3000",
+		"start:app-b": "npm --prefix app-b run dev -- --port 3001",
+		"dev": "concurrently \"npm run start:server\" \"npm run start:app-a\" \"npm run start:app-b\"",
+		"install:browsers": "playwright install",
+		"test:e2e": "playwright test"
+	},
+	"dependencies": {
+		"ws": "^8.18.2"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.52.0",
+		"concurrently": "^8.0.0",
+		"playwright": "^1.43.0"
+	}
+}
